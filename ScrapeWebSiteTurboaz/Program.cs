@@ -22,7 +22,7 @@ namespace ScrapeWebSiteTurboaz
         {
             var mylink = new List<string>();
             mylink.Add("https://turbo.az/autos");
-            for (int i = 2; i < 26; i++)mylink.Add($"https://turbo.az/autos?page={i}");
+            for (int i = 2; i < 25; i++) mylink.Add($"https://turbo.az/autos?page={i}");
 
             for (int i = 0; i < mylink.Count; i++)
             {
@@ -119,20 +119,20 @@ namespace ScrapeWebSiteTurboaz
                 }
                 else
                 {
-                    Seher = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[0].ChildNodes[1].InnerText;
-                    Marka = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[1].ChildNodes[1].InnerText;
-                    model = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[2].ChildNodes[1].InnerText;
-                    Il = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[3].ChildNodes[1].InnerText;
-                    BanNovu = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[4].ChildNodes[1].InnerText;
-                    Reng = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[5].ChildNodes[1].InnerText;
-                    Muherrik = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[6].ChildNodes[1].InnerText;
-                    MuherrikGucu = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[7].ChildNodes[1].InnerText;
-                    Yanacaq = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[8].ChildNodes[1].InnerText;
-                    Yurus = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[9].ChildNodes[1].InnerText;
-                    Karopka = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[10].ChildNodes[1].InnerText;
-                    Oturucu = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[11].ChildNodes[1].InnerText;
-                    Teze = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[12].ChildNodes[1].InnerText;
-                    Qiymet = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[0].ChildNodes[13].ChildNodes[1].InnerText;
+                    Seher = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[0].ChildNodes[1].InnerText;
+                    Marka = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[1].ChildNodes[1].InnerText;
+                    model = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[2].ChildNodes[1].InnerText;
+                    Il = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[3].ChildNodes[1].InnerText;
+                    BanNovu = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[4].ChildNodes[1].InnerText;
+                    Reng = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[5].ChildNodes[1].InnerText;
+                    Muherrik = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[6].ChildNodes[1].InnerText;
+                    MuherrikGucu = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[7].ChildNodes[1].InnerText;
+                    Yanacaq = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[8].ChildNodes[1].InnerText;
+                    Yurus = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[9].ChildNodes[1].InnerText;
+                    Karopka = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[10].ChildNodes[1].InnerText;
+                    Oturucu = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[11].ChildNodes[1].InnerText;
+                    Teze = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[12].ChildNodes[1].InnerText;
+                    Qiymet = response.Css(".page-content > div")[0].ChildNodes[number].ChildNodes[num2].ChildNodes[1].ChildNodes[13].ChildNodes[1].InnerText;
                     var ImgObj = response.Css(".page-content > div")[0].ChildNodes[0].ChildNodes[1].ChildNodes;
                     for (int i = 0; i < ImgObj.Count(); i++) ImgUrls.Add(ImgObj[i].GetAttribute("href"));
                     saticiAdi = "dqwe";
@@ -164,7 +164,7 @@ namespace ScrapeWebSiteTurboaz
                 MuherrikGucu = MuherrikGucu.Substring(0, MuherrikGucu.Length - 4);
 
                 string server = "localhost";
-                string dbname = "CarDealer";
+                string dbname = "cardealer";
                 string user = "root";
                 string pass = "";
 
@@ -189,11 +189,65 @@ namespace ScrapeWebSiteTurboaz
                     }
                     long lastCarid;
 
+                    int cityId = 0;
+                    //select query to my sql
+                    string query = $"SELECT * FROM city WHERE CityName = '{Seher}'";
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(query, baglan);
+                    //Execute command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    if (dataReader.Read())
+                        cityId = dataReader.GetInt32("id");
+                    dataReader.Close();
+
+                    int ColorId = 0;
+                    //select query to my sql
+                    string query1 = $"SELECT * FROM color WHERE ColorName = '{Reng}'";
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd1 = new MySqlCommand(query1, baglan);
+                    dataReader = cmd1.ExecuteReader();
+
+                    if (dataReader.Read())
+                        ColorId = dataReader.GetInt32("id");
+
+                    //close datareader
+                    dataReader.Close();
+
+                    int FuelId = 0;
+                    //select query to my sql
+                    string query2 = $"SELECT * FROM fuel WHERE FuelName = '{Yanacaq}'";
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd23 = new MySqlCommand(query2, baglan);
+                    dataReader = cmd23.ExecuteReader();
+                    if (dataReader.Read())
+                        FuelId = dataReader.GetInt32("id");
+                    dataReader.Close();
+
+                    int GearId = 0;
+                    //select query to my sql
+                    string query3 = $"SELECT * FROM gearbox WHERE GearboxName = '{Karopka}'";
+
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd3 = new MySqlCommand(query3, baglan);
+                    dataReader = cmd3.ExecuteReader();
+                    if (dataReader.Read())
+                        GearId = dataReader.GetInt32("id");
+                    dataReader.Close();
+                    int CarTypeId = 0;
+                    //select query to my sql
+                    string query4 = $"SELECT * FROM cartype WHERE CarTypeName = '{BanNovu}'";
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd4 = new MySqlCommand(query4, baglan);
+                    dataReader = cmd4.ExecuteReader();
+                    if (dataReader.Read())
+                        CarTypeId = dataReader.GetInt32("id");
+                    dataReader.Close();
+
 
                     //SELECT id FROM employee_designation ORDER BY id DESC LIMIT 1;
-                    string query = $@"INSERT INTO `car`( `SellerName`, `SellerCity`, `Make`, `Model`, `Year`, `CarType`, `Engine`, `EnginePower`, `Fuel`, `Milage`, `Gearbox`, `Transmission`, `Color`, `New`, `Price`,`PriceType`)
-                    VALUES ('{saticiAdi}','{Seher}','{Marka}','{model}','{Il}','{BanNovu}','{Muherrik}','{MuherrikGucu}','{Yanacaq}','{Yurus}','{Karopka}','{Oturucu}','{Reng}',{test},'{Qiymet}','{qiymetTipi}')";
-                    using (var cmd = new MySqlCommand(query, baglan))
+                    query = $@"INSERT INTO `cars`(`ColorId`, `Fuelid`, `GearBoxId`, `CarTypeId`, `Make`, `Model`, `Year`, `Engine`, `EnginePower`, `MillAge`, `Price`, `PriceType`, `IsSalon`, `Description`)
+                    VALUES ({ColorId},{FuelId},{GearId},{CarTypeId},'{Marka}','{model}','{Il}','{Muherrik}','{MuherrikGucu}','{Yurus}','{Qiymet}','{qiymetTipi}',{test},'{description}')";
+                    using (cmd = new MySqlCommand(query, baglan))
                     {
                         cmd.ExecuteNonQuery();
                         lastCarid = cmd.LastInsertedId;
@@ -201,7 +255,7 @@ namespace ScrapeWebSiteTurboaz
                     for (int i = 0; i < ImgUrls.Count; i++)
                     {
                         string newquery = $@"INSERT INTO `images`(`Value`, `CarId`) VALUES ('{IdTittle}-{i}.jpg',{lastCarid})";
-                        using (var cmd2=new MySqlCommand(newquery, baglan))
+                        using (var cmd2 = new MySqlCommand(newquery, baglan))
                         {
                             cmd2.ExecuteNonQuery();
                         }
@@ -227,10 +281,19 @@ namespace ScrapeWebSiteTurboaz
                     ImgUrls.Clear();
 
 
+                    int userId = 1;
+                    query = $@"INSERT INTO `elan`(`UserId`, `SellerName`, `CityId`, `CarId`, `Status`) VALUES ({userId},'{saticiAdi}',{cityId},{lastCarid},1)";
+                    using (cmd = new MySqlCommand(query, baglan))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    
                 }
 
 
-              
+
+
 
 
                 Console.WriteLine(saticiAdi);
